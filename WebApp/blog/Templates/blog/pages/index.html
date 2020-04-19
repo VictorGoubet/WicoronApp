@@ -1,0 +1,18 @@
+{% extends 'blog/layouts/base.html'%}
+
+{%block blog_content%}
+    <h4 class="nArticle">{{posts|length}} articles disponibles !</h4>
+    <ul>
+        {% for post in posts %}
+        <article>
+            <h1>{{post.id}} &middot; {{post.title}}</h1>
+            <div class="div1">
+                <p>{{post.body|truncatewords:5}}</p>
+                <a class="ReadArticle" href="{% url 'blog:show' id=post.id%}" >📰 Lire l'article</a>
+            </div>
+            
+        </article> 
+        {%endfor%}
+    </ul>
+    <hr>
+{% endblock%}

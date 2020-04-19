@@ -1,0 +1,17 @@
+
+{% extends 'blog/layouts/base.html'%}
+
+{%block blog_content%}
+
+<a class="back" href="{%url 'blog:index'%}"> ⬅ Back</a>
+<article>
+    <h1>{{post.id}} &middot; {{post.title}}</h1>
+    <br>
+    <h4>Créé il y a <time datetime="{{post.created_at|date:'Y-m-d'}}">{{post.created_at|timesince}}</time> </h3>
+    <h4>Modifié il y a <time datetime="{{post.Modified_at|date:'Y-m-d'}}">{{post.Modified_at|timesince}}</time></h4>
+    <br>
+    <p>{{post.body}}</p>
+ </article> 
+
+
+ {%endblock%}
