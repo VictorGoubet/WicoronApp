@@ -24,12 +24,27 @@
 	display: grid;
 }
 
+.btn_Ajouter:hover{
+	opacity: 1;
+	border-radius: 5em;
+}
 
+.btn_Ajouter{
+	border-radius: 0.8em;
+	width:50%;
+	height: 10%;
+	opacity: 0.5;
+	border:solid #FF9B22;
+	background-color: #FF9B22;
+	color: white;
+	font-size: 1.5em;
+}
 .ProduitWrapper{
+	position: relative;
 	margin-top: 5em;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: auto;
+	grid-auto-rows: 400px;
 	grid-column-gap: 5em;
 	grid-row-gap: 5em;
 }
@@ -82,8 +97,8 @@ ul.list-spaces li{ margin-bottom:10px; }
 .top-margin { margin-top:20px; }
 
 .prix{
-	font-weight: bold;
-	margin-top:2em;
+	margin-top:1em;
+	font-size: 1.5em;
 }
 
 .oneline{
@@ -92,14 +107,30 @@ ul.list-spaces li{ margin-bottom:10px; }
 
 .pm{
 	cursor:pointer;
+	margin-right: 1em;
+	opacity: 0.8;
 }
 
+.pm:hover{
+	opacity: 1;
+}
+.grd{
+	font-size: 2em;
+}
 .n{
 	border:none;
-	margin-left: 2em;
+	margin-right: 1em;
+	width:1.1em;
+	text-align: center;
+	font-size: 2em;
+}
+
+.prdt{
+	position:relative;
 }
 .incrementor{
-	display:inline;
+	bottom: 0;
+	display: inline;
 }
 
 .goPanier{

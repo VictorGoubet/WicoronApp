@@ -60,20 +60,17 @@
 		<div class=ProduitWrapper>
 			{%for produit in prdts%}
 				<div class="prdt center">
-					<h4>{{produit.Nom}}</h4>
+					<h4 class="grd">{{produit.Nom}}</h4>
 					<img src="{{produit.url}}" class="imgPrdt">
 					<p class="prix">{{produit.prix}} €</p>
-
 					<div class="incrementor">
-						<img class="pm" src="{% static 'images/up.png' %}" onclick=incInput(1,4)/>
-						<img class="pm" src="{% static 'images/down.png' %}" onclick=incInput(-1,4) />
-						<input class="n" type="text" value="0" id='4' />
-						<button>Ajouter</button>
+						<img class="pm" src="{% static 'images/down.png' %}" id=m_{{forloop.counter}} onclick="incInput(-1,this.getAttribute('id'))"/>
+						<img class="pm" src="{% static 'images/up.png' %}" id=p_{{forloop.counter}} onclick="incInput(1,this.getAttribute('id'))"/>
+						<input class="n" type="text" value="0" id=inpt_{{forloop.counter}} />
+						<button class="btn_Ajouter">Ajouter</button>
 					</div>
-					
-					
-
 				</div>
+				
 			{% endfor %}
 		</div>
 
@@ -133,10 +130,16 @@
 
 	<script type="text/javascript" >
 	function incInput(i,id) {
-		var value = parseInt(document.getElementById(id).value, 10);
-		value += i;
-		document.getElementById(id).value = value;
+		sp=id.split('_');
+		var newid='inpt_'+sp[1];
+		var value =parseInt(document.getElementById(newid).value,10);
+		if((value>0 || i==1)&& !(value==5 && i==1)){
+			value += i;
+			document.getElementById(newid).value = value;
+		}
+		
 	}
+
 	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
