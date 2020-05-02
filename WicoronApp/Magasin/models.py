@@ -1,4 +1,5 @@
 from django.db import models
+from Connexion.forms import SignUpForm
 
 class Produit(models.Model):
     Nom=models.CharField(max_length=50)
@@ -6,5 +7,8 @@ class Produit(models.Model):
     prix=models.FloatField(default=0.0)
 
 class Panier(models.Model):
-    pass
+
+    Produits=models.ManyToManyField(Produit)
+    Total=models.FloatField(default=0.0)
+    #idClient = models.ForeignKey(SignUpForm, on_delete=models.SET_NULL)
 
