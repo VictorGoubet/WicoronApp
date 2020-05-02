@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Produit
 
 # Create your views here.
@@ -7,7 +7,10 @@ def Store(request):
         produits=Produit.objects.all()
         return render(request,"Magasin/Store.html",{'prdts':produits})
     else:
-        pass
+        return redirect('home')
 
 def Panier(request):
-    return render(request,"Magasin/Panier.html")
+    if(request.user.is_authenticated):
+        return render(request,"Magasin/Panier.html")
+    else:
+        return redirect('home')

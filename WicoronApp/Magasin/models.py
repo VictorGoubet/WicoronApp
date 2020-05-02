@@ -5,3 +5,6 @@ class Produit(models.Model):
     url = models.URLField(max_length=255)
     prix=models.FloatField(default=0.0)
 
+class Panier(models.Model):
+    pass
+
