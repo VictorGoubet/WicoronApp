@@ -69,22 +69,23 @@
 								<a href="{% url 'Register'%}">enregistrer</a>. Merci. </p>
 							<hr>
 							
-							<form>
+							<form method="POST" action="{% url 'Login'%}" class="site-form">
+								{%csrf_token %}
 								<div class="top-margin">
-									<label>Pseudo/Email <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<label>Pseudo<span class="text-danger">*</span></label>  	
+									<input type="text" name="username" id="id_username" maxlength="150" autofocus required class="form-control">
 								</div>
 								<div class="top-margin">
-									<label>Mot de Passe <span class="text-danger">*</span></label>
-									<input type="password" class="form-control">
+									<label>Mot De Passe <span class="text-danger">*</span></label>
+										<input type="password" name="password" required id="id_password" class="form-control">
 								</div>
 
 								<hr>
 
 								<div class="row">
 									<div class="BtnLogin">
-										<button class="btn btn-action" type="submit">Se Connecter</button>
-										<a href="{% url 'Store'%}"><h3>Lien temporaire vers Store et Visual</h3></a>
+										<button class="btn btn-action" type="submit" value="Signin">Se Connecter</button>
+										
 									</div>
 								</div>
 							</form>

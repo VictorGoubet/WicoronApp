@@ -38,8 +38,12 @@
 					<li class="active">
 						<a href="{% url 'home'%}">Accueil</a>
 					</li>
-					
+					{% if user.is_authenticated %}
+					<li><a class="btn" href="{% url 'Logout'%}">DECONNEXION</a></li>
+
+					{% else %}
 					<li><a class="btn" href="{% url 'Login'%}">CONNEXION</a></li>
+					{% endif %}
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -52,9 +56,16 @@
 			<div class="row">
 				<h1 class="lead">WicoronApp </h1>
 				<p class="tagline"> L'appli qui prend soin de vous</p>
+				{% if user.is_authenticated %} 
+				<p>
+					<a class="btn btn-action btn-lg" role="button" href="{% url 'Store'%}">ACCES AU MAGASIN</a>
+				</p>
+				{% else %}
 				<p><a class="btn btn-default btn-lg" role="button" href="{% url 'Login'%}">CONNEXION</a> <a class="btn btn-action btn-lg" role="button" href="{% url 'Register'%}">INSCRIPTION</a>
 
 				</p>
+
+				{% endif %}
 			</div>
 		</div>
 	</header>
