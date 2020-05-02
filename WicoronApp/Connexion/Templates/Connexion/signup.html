@@ -69,37 +69,41 @@
 							</p>
 							<hr>
 
-							<form method="POST" action="{% url 'Register'%}">
-								{%csrf_token %}
-								<div class="top-margin">
-									<label>Prénom</label>  	
-									<input type="text" class="form-control">
+							<form method="POST" action="{% url 'Register'%}" class="site-form">
+												{%csrf_token %}
+				
+																<div class="top-margin">
+									<label>Pseudo<span class="text-danger">*</span></label>  	
+									<input type="text" name="username" id="id_username" maxlength="150" autofocus required class="form-control">
 								</div>
 								<div class="top-margin">
-									<label>Nom</label>
-									<input type="text" class="form-control">
+									<label>Prénom<span class="text-danger">*</span></label>  	
+									<input type="text" name="first_name" id="id_first_name" maxlength="100" autofocus required class="form-control">
+								</div>
+								<div class="top-margin">
+									<label>Nom<span class="text-danger">*</span></label>
+									<input type="text" name="last_name" required id="id_last_name" maxlength="100" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Adresse Mail <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" name="email" required id="id_email" class="form-control" >
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
 										<label>Mot De Passe <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="password" name="password1" required id="id_password1" class="form-control">
 									</div>
 									<div class="col-sm-6">
 										<label>Confirmer  <span class="text-danger">*</span></label>
-										<input type="text" class="form-control">
+										<input type="password" name="password2" required id="id_password2" class="form-control">
 									</div>
 								</div>
 
 								<hr>
-
 								<div class="row">
 									<div class="BtnInscription">
-										<button class="btn btn-action" type="submit">Inscription</button>
+										<button class="btn btn-action" type="submit" value="Signup">Inscription</button>
 									</div>
 								</div>
 							</form>
