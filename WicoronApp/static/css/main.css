@@ -20,6 +20,20 @@
 	text-align: center;
 }
 
+.stack{
+	display: grid;
+}
+
+
+.ProduitWrapper{
+	margin-top: 5em;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-auto-rows: auto;
+	grid-column-gap: 5em;
+	grid-row-gap: 5em;
+}
+
 .center{
 	text-align: center;
 }
@@ -32,15 +46,7 @@
 .ListeVisual li{
 
 	margin:2em 0em 2em 4em;
-	
-}
 
-
-.DivPanier{
-	border:solid #FF8C00;
-	border-radius: 20px;
-	height: 30em;
-	width:20em;
 }
 
 .verticalCenter{
@@ -57,7 +63,6 @@
 	.h-caption { text-align: center; } 
 	.h-caption i { display:block; font-size: 54px; color:#382526; margin-bottom:36px; }
 	.h-caption h4 { color:#382526; font-size: 16px; font-weight: bold; margin-bottom:20px; }
-	.h-body { }
 
 
 /* Typography */
@@ -76,15 +81,38 @@ ul.list-spaces li{ margin-bottom:10px; }
 .top-space { margin-top: 60px; }
 .top-margin { margin-top:20px; }
 
+.prix{
+	font-weight: bold;
+	margin-top:2em;
+}
+
+.oneline{
+	display:inline;
+}
+
+.pm{
+	cursor:pointer;
+}
+
+.n{
+	border:none;
+	margin-left: 2em;
+}
+.incrementor{
+	display:inline;
+}
+
+.goPanier{
+	text-decoration: none;
+	float: left;
+}
+
 img { max-width:100%; }
 img.pull-right { margin-left: 10px; }
 img.pull-left { margin-right: 10px; }
 #map { width:100%; height:280px; }
 #social { margin-top:50px; margin-bottom:50px; }
 	#social .wrapper { width:340px; margin:0 auto; }
-
-/* Main content block */
-.maincontent { }
 
 /* Sidebars */
 .sidebar { padding-top:36px; padding-bottom:30px; }

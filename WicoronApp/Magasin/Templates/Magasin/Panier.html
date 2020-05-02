@@ -54,28 +54,8 @@
 			<li class="active">Store</li>
 		</ol>
 
-		<h1 class="center">Store :</h1>
-		<a href="{% url 'Panier'%}" ><img src="{% static 'images/basket.png' %}" alt="Panier"></a>
-
-		<div class=ProduitWrapper>
-			{%for produit in prdts%}
-				<div class="prdt center">
-					<h4>{{produit.Nom}}</h4>
-					<img src="{{produit.url}}" class="imgPrdt">
-					<p class="prix">{{produit.prix}} €</p>
-
-					<div class="incrementor">
-						<img class="pm" src="{% static 'images/up.png' %}" onclick=incInput(1,4)/>
-						<img class="pm" src="{% static 'images/down.png' %}" onclick=incInput(-1,4) />
-						<input class="n" type="text" value="0" id='4' />
-						<button>Ajouter</button>
-					</div>
-					
-					
-
-				</div>
-			{% endfor %}
-		</div>
+		<h1 class="center">Panier :</h1>
+		<a href="{% url 'Store'%}" ><img src="{% static 'images/backArrow.png' %}" alt="Panier"></a>
 
 	</div>	
 	
@@ -131,13 +111,7 @@
 
 
 
-	<script type="text/javascript" >
-	function incInput(i,id) {
-		var value = parseInt(document.getElementById(id).value, 10);
-		value += i;
-		document.getElementById(id).value = value;
-	}
-	</script>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="{% static 'js/headroom.min.js' %}"></script>
