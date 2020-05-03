@@ -24,21 +24,7 @@
 	display: grid;
 }
 
-.btn_Ajouter:hover{
-	opacity: 1;
-	border-radius: 5em;
-}
 
-.btn_Ajouter{
-	border-radius: 0.8em;
-	width:50%;
-	height: 10%;
-	opacity: 0.5;
-	border:solid #FF9B22;
-	background-color: #FF9B22;
-	color: white;
-	font-size: 1.5em;
-}
 .ProduitWrapper{
 	position: relative;
 	margin-top: 5em;
@@ -109,6 +95,49 @@ ul.list-spaces li{ margin-bottom:10px; }
 	cursor:pointer;
 	margin-right: 1em;
 	opacity: 0.8;
+	
+}
+
+.miniRecap{
+	grid-template-columns: 50% 50%;
+	margin: 2em;
+	display: grid;
+	border-bottom: solid #FF9B22 1px;
+}
+
+.total{
+	display: inline;
+
+}
+
+.PayerBtn{
+	background-color: #FF9B22;
+	border:none;
+	width:6em;
+	opacity: 1;
+	color: white;
+	font-size: 2em;
+	border-radius: 1em;
+	height: 1.8em;
+	box-shadow: none;
+
+}
+.PayerBtn:hover{
+	opacity: 0.7;
+	
+}
+
+.Recap{
+	border:solid #FF9B22;
+	border-radius: 1em;
+	width: 60%;
+	margin:1em auto;
+	display: grid;
+}
+.imgRecap{
+	height: 3em;
+	float: right;
+	margin-right: 2em;
 }
 
 .pm:hover{
@@ -123,6 +152,8 @@ ul.list-spaces li{ margin-bottom:10px; }
 	width:1.1em;
 	text-align: center;
 	font-size: 2em;
+	float:bottom;
+
 }
 
 .prdt{
@@ -130,12 +161,13 @@ ul.list-spaces li{ margin-bottom:10px; }
 }
 .incrementor{
 	bottom: 0;
-	display: inline;
+	height:5em;
+
 }
 
 .goPanier{
-	text-decoration: none;
-	float: left;
+	background-color: transparent;
+	border-color: transparent;
 }
 
 img { max-width:100%; }

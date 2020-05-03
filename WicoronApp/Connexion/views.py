@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
 from django.shortcuts import render, redirect
+from Magasin.models import Panier
 
 # Create your views here.
 
@@ -14,6 +15,8 @@ def Register(request):
             user.refresh_from_db()
             login(request,user)
             #Puis sign in
+            basket=Panier(Client=user)
+            basket.save()
             return render(request,"Connexion/signin.html")
     else:
         form = SignUpForm()

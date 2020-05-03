@@ -2,6 +2,7 @@
 <html lang="fr">
 	<head>
 		{% load static %}
+		
 		<meta charset="utf-8">
 		<meta name="viewport"   content="width=device-width, initial-scale=1.0">
 		<meta name="description"content="WicoronApp est une plateforme ayant pour but de faciliter la vie de ceux qui sont en confinement total">
@@ -55,26 +56,31 @@
 		</ol>
 
 		<h1 class="center">Store :</h1>
-		<a href="{% url 'Panier'%}" ><img src="{% static 'images/basket.png' %}" alt="Panier"></a>
+		<form method="POST" action="{% url 'Panier'%}" >
+			{%csrf_token %}
+			<button class="goPanier" type="submit"><img src="{% static 'images/basket.png' %}" alt="Panier"></button>
 
-		<div class=ProduitWrapper>
-			{%for produit in prdts%}
-				<div class="prdt center">
-					<h4 class="grd">{{produit.Nom}}</h4>
-					<img src="{{produit.url}}" class="imgPrdt">
-					<p class="prix">{{produit.prix}} €</p>
-					<div class="incrementor">
-						<img class="pm" src="{% static 'images/down.png' %}" id=m_{{forloop.counter}} onclick="incInput(-1,this.getAttribute('id'))"/>
-						<img class="pm" src="{% static 'images/up.png' %}" id=p_{{forloop.counter}} onclick="incInput(1,this.getAttribute('id'))"/>
-						<input class="n" type="text" value="0" id=inpt_{{forloop.counter}} />
-						<button class="btn_Ajouter">Ajouter</button>
-					</div>
-				</div>
+			<div class=ProduitWrapper>
+				{%for produit in prdts%}
+					<div class="prdt center">
+						<h4 class="grd">{{produit.Nom}}</h4>
+						<img src="{{produit.url}}" class="imgPrdt">
+						<p class="prix">{{produit.prix}} €</p>
+						<div class="incrementor">
+							<img class="pm" src="{% static 'images/down.png' %}" id=IDm_{{produit.Nom}} onclick="incInput(-1,this.getAttribute('id'))"/>
+							<img class="pm" src="{% static 'images/up.png' %}" id=IDp_{{produit.Nom}} onclick="incInput(1,this.getAttribute('id'))"/>
+							<input class="n" name="inpt_{{produit.Nom}}" type="text" value="0" id=IDinpt_{{produit.Nom}} />
 				
-			{% endfor %}
-		</div>
+						</div>
+					</div>
+					
+				{% endfor %}
+			</div>
 
 	</div>	
+
+		</form>
+		
 	
 
 	<footer id="footer" class="top-space">
@@ -128,21 +134,9 @@
 
 
 
-	<script type="text/javascript" >
-	function incInput(i,id) {
-		sp=id.split('_');
-		var newid='inpt_'+sp[1];
-		var value =parseInt(document.getElementById(newid).value,10);
-		if((value>0 || i==1)&& !(value==5 && i==1)){
-			value += i;
-			document.getElementById(newid).value = value;
-		}
-		
-	}
-
-	</script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="{% static 'js/store.js' %}"></script>
 	<script src="{% static 'js/headroom.min.js' %}"></script>
 	<script src="{% static 'js/jQuery.headroom.min.js' %}"></script>
 	<script src="{% static 'js/template.js' %}"></script>

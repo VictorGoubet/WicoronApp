@@ -1,5 +1,6 @@
 from django.db import models
 from Connexion.forms import SignUpForm
+from django.contrib.auth.models import User
 
 class Produit(models.Model):
     Nom=models.CharField(max_length=50)
@@ -8,7 +9,7 @@ class Produit(models.Model):
 
 class Panier(models.Model):
 
-    Produits=models.ManyToManyField(Produit)
+    Produits=models.ManyToManyField(Produit,default=None)
     Total=models.FloatField(default=0.0)
-    #idClient = models.ForeignKey(SignUpForm, on_delete=models.SET_NULL)
+    Client = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
 

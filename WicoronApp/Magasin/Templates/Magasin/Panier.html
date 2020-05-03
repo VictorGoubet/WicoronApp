@@ -51,11 +51,29 @@
 		
 		<ol class="breadcrumb">
 			<li>Accueil</li>
-			<li class="active">Store</li>
+			<li class="active">Panier</li>
 		</ol>
 
 		<h1 class="center">Panier :</h1>
 		<a href="{% url 'Store'%}" ><img src="{% static 'images/backArrow.png' %}" alt="Panier"></a>
+
+		<div class=Recap>
+			{%for produit in prdts%}
+				<div class="miniRecap">
+					<h4 class="grd">{{produit.Nom}}</h4>
+					
+					<img src="{{produit.url}}" class="imgRecap" >
+				</div>
+		
+			{%endfor%}
+
+		</div>
+		<div class="total center">
+			<h1>Total : 0€</h1>
+			<button class="PayerBtn">Payer</button>
+		</div>
+		
+		
 
 	</div>	
 	
