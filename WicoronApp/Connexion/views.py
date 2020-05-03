@@ -48,6 +48,8 @@ def Login_view(request):
             user = form.get_user()
             login(request,user)
             return redirect('home')
+        else:
+            messages.error(request,"Le mot de passe est incorrect ou le compte n'existe pas *")
     return render(request,"Connexion/signin.html")
 
 def Logout_view(request):
