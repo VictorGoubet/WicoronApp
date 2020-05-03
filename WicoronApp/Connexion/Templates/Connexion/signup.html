@@ -68,11 +68,17 @@
 								<a href="{% url 'Login'%}">connecter.</a>  
 							</p>
 							<hr>
-
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 							<form method="POST" action="{% url 'Register'%}" class="site-form">
-								{%csrf_token %}
-				
-								<div class="top-margin">
+												{%csrf_token %}
+											        
+							<div class="top-margin">
 									<label>Pseudo<span class="text-danger">*</span></label>  	
 									<input type="text" name="username" id="id_username" maxlength="150" autofocus required class="form-control">
 								</div>
@@ -83,6 +89,19 @@
 								<div class="top-margin">
 									<label>Nom<span class="text-danger">*</span></label>
 									<input type="text" name="last_name" required id="id_last_name" maxlength="100" class="form-control">
+								</div>
+								<div class="top-margin">
+									<label>Nombre de Personne Dans Votre Foyer<span class="text-danger">*</span></label>
+									<input type="number" name="nbPersonne" required id="id_nbPersonne" maxlength="100" class="form-control">
+								</div>
+
+																<div class="top-margin">
+									<label>Adresse<span class="text-danger">*</span></label>
+									<input type="text" name="adresse" required id="id_adresse" maxlength="200" class="form-control">
+								</div>
+																<div class="top-margin">
+									<label>Code Postal<span class="text-danger">*</span></label>
+									<input type="number" name="codePostal" required id="id_codePostal" maxlength="100" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Adresse Mail <span class="text-danger">*</span></label>

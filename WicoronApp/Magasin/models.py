@@ -1,5 +1,5 @@
 from django.db import models
-from Connexion.forms import SignUpForm
+
 from django.contrib.auth.models import User
 
 class Produit(models.Model):

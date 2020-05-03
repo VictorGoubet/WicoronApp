@@ -4,23 +4,41 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import SignUpForm
 from django.shortcuts import render, redirect
 from Magasin.models import Panier
+from .models import Profil
+from django.contrib import messages 
+from django.contrib.auth.models import User
 
 # Create your views here.
-
 def Register(request):
     if( request.method=='POST'):
         form = SignUpForm(request.POST)
+        username = request.POST['username']
         if(form.is_valid()):
             user = form.save()
             user.refresh_from_db()
-            login(request,user)
-            #Puis sign in
+            adresse = form.cleaned_data["adresse"]
+            codepostal = form.cleaned_data["codePostal"]
+            nbPersonne = form.cleaned_data["nbPersonne"]
+            profil = Profil(user=user, codePostal = codepostal,adresse=adresse,nbPersonne=nbPersonne)
+            profil.save()
             basket=Panier(Client=user)
             basket.save()
-            return render(request,"Connexion/signin.html")
-    else:
-        form = SignUpForm()
+            login(request,user)
+            
+            #Puis sign in
+            return redirect('home')
+        if(request.POST["password1"]!=request.POST["password2"]):
+            messages.error(request, "Les deux mots de passe ne correspondent pas.")
+        
+        if(User.objects.exclude(pk=form.instance.pk).filter(username=username).exists()):
+            messages.error(request, "Nom d'utilisateur déjà utilisé")
+        if(len(request.POST["password1"])<8):
+            messages.error(request, "Le mot de passe doit contenir au moins 8 caractères")
+        else:
+            messages.error(request, "Le mot de passe doit contenir des chiffres et des lettres.\nIl ne doit pas être trop proche de votre nom et prénom.")
+    
     return render(request,"Connexion/signup.html")
+
 
 
 def Login_view(request):
@@ -29,7 +47,7 @@ def Login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request,user)
-            return render(request,"index.html")
+            return redirect('home')
     return render(request,"Connexion/signin.html")
 
 def Logout_view(request):
