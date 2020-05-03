@@ -16,6 +16,6 @@ class Panier(models.Model):
 class Panier_has_Produits(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
     panier = models.ForeignKey(Panier, on_delete=models.CASCADE)
-    quantite=models.FloatField(default=0)
+    quantite = models.FloatField(default=0)
     
 
