@@ -58,21 +58,21 @@
 		<a href="{% url 'Store'%}" ><img src="{% static 'images/backArrow.png' %}" alt="Panier"></a>
 
 		<div class=Recap>
-
+			
 			{%for produit,quantite in recap%}
-
+				
 				<div class="miniRecap">
 					<h4 class="grd">{{produit.Nom}} x {{quantite.quantite}}</h4>
 
 					
 					<img src="{{produit.url}}" class="imgRecap" >
 				</div>
-		
+				
 			{%endfor%}
 
 		</div>
 		<div class="total center">
-			<h1>Total : 0€</h1>
+			<h1>Total : {{total}}€</h1>
 			<button class="PayerBtn">Payer</button>
 		</div>
 		

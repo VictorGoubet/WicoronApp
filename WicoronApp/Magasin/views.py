@@ -28,19 +28,24 @@ def PanierView(request):
                 if(newProduit not in basket.Produits.all()):
                     basket.Produits.add(newProduit,through_defaults={'quantite': int(request.POST[prdt])})
                 else:
+                    
                     #si il est déja présent on récupére la quantité et on limite au nb de personne dans le foyer
                     liaison=Panier_has_Produits.objects.get(panier=basket,produit=newProduit)
                     if(liaison.quantite+int(request.POST[prdt])<=5):
                         liaison.quantite+=int(request.POST[prdt])
                     else:
                         liaison.quantite=5
+                    liaison.save()
 
-                    
+        
         qt=Panier_has_Produits.objects.filter(panier=basket).all()
         produitsCmd=Panier.objects.get(Client=request.user).Produits.all()
-
         recap=list(zip(produitsCmd,qt))
+        total=0
+        for p,q in recap:
+            total+=p.prix*q.quantite
+
         if(request.user.is_authenticated):
-            return render(request,"Magasin/Panier.html",{"recap":recap})
+            return render(request,"Magasin/Panier.html",{"recap":recap,"total":total})
         else:
             return redirect('home')
