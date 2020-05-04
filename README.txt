@@ -9,3 +9,9 @@ Pour faire contionner la WebApp:
   -Aller sur internet et taper dans la barre url "localhost:8000"
   -Vous êtes sur le site
 
+
+Packages necessaires:
+
+-Folium (visualisation)
+-requests
+-Django
