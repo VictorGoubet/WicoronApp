@@ -7,6 +7,9 @@ class Produit(models.Model):
     url = models.URLField(max_length=255)
     prix=models.FloatField(default=0.0)
 
+    def __str__(self):
+        return self.Nom
+
 class Panier(models.Model):
 
     Produits=models.ManyToManyField(Produit,default=None,through='Panier_has_Produits',through_fields=('panier', 'produit'))
@@ -16,6 +19,6 @@ class Panier(models.Model):
 class Panier_has_Produits(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
     panier = models.ForeignKey(Panier, on_delete=models.CASCADE)
-    quantite = models.FloatField(default=0)
+    quantite = models.IntegerField()
     
 
