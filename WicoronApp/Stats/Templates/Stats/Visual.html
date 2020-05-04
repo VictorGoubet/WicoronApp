@@ -60,7 +60,7 @@
 				<h3 class="center">Group :</h3>
 				<ol class="ListeVisual">
 					<li>
-						<a href="">Visualisation 1</a>
+						<a href="{% url 'mapUtilisateur' %}"">Visualisation 1</a>
 					</li>
 					<li>
 						<a href="">Visualisation 2</a>
@@ -75,6 +75,7 @@
 
 			<div class="col-md-8 maincontent">
 				<h1 class="center">VISUALISATION :</h1>
+				<div> {{ map|safe }} </div>
 			</div>
 		</div>
 	</div>	<!-- /container -->

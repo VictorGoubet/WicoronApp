@@ -9,6 +9,7 @@ class SignUpForm(UserCreationForm):
     codePostal = forms.IntegerField(help_text='Code Postal')
     adresse = forms.CharField(max_length=200, help_text='Adresse')
     nbPersonne = forms.IntegerField(help_text='Nombre de personne dans le foyer')
+    ville = forms.CharField(max_length=200, help_text='Ville')
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2','codePostal','adresse','nbPersonne')
+        fields = ('username', 'first_name', 'last_name','email', 'password1', 'password2','codePostal','adresse','nbPersonne','ville')

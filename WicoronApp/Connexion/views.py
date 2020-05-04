@@ -7,7 +7,7 @@ from Magasin.models import Panier
 from .models import Profil
 from django.contrib import messages 
 from django.contrib.auth.models import User
-
+from .carterepo import carte, coordonnee
 # Create your views here.
 def Register(request):
     if( request.method=='POST'):
@@ -19,14 +19,19 @@ def Register(request):
             adresse = form.cleaned_data["adresse"]
             codepostal = form.cleaned_data["codePostal"]
             nbPersonne = form.cleaned_data["nbPersonne"]
-            profil = Profil(user=user, codePostal = codepostal,adresse=adresse,nbPersonne=nbPersonne)
+
+            ville = form.cleaned_data["ville"]
+            profil = Profil(user=user, codePostal = codepostal,adresse=adresse,nbPersonne=nbPersonne,ville=ville,coordonneeGeoX=0,coordonneeGeoY=0)
             profil.save()
             basket=Panier(Client=user)
             basket.save()
             login(request,user)
             
+            #Creation de la carte
+            map = carte(adresse,codepostal,[coordonnee(adresse,codepostal)])
+            context = {'map': map}
             #Puis sign in
-            return redirect('home')
+            return render(request, 'Connexion/map.html', context)
         if(request.POST["password1"]!=request.POST["password2"]):
             messages.error(request, "Les deux mots de passe ne correspondent pas.")
         
@@ -39,6 +44,18 @@ def Register(request):
     
     return render(request,"Connexion/signup.html")
 
+def validationAdresse(request):
+    
+    utilisateur = Profil.objects.get(user=request.user)
+
+    c = coordonnee(utilisateur.adresse,utilisateur.codePostal)
+    utilisateur.coordonneeGeoX = c[0]
+    utilisateur.coordonneeGeoY = c[1]
+    print(c[0],type(c[1]))
+    utilisateur.save(force_update=True)
+    print(utilisateur.coordonneeGeoX)
+    return redirect("home")
+    
 
 
 def Login_view(request):
