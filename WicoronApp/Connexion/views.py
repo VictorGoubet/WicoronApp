@@ -29,8 +29,16 @@ def Register(request):
             
             #Creation de la carte
             map = carte(adresse,codepostal,[coordonnee(adresse,codepostal)])
-            context = {'map': map}
-            #Puis sign in
+
+            #Ajout des boutons de validation adresse ou changement 
+            boutons = """<div class="row align-center"><button class="btn btn-action" onclick="window.location.href = '/Connexion/Validation';"">Valider</button>
+							
+							
+								
+								<button class="btn btn-action" onclick="window.location.href = '/Connexion/changementAdresse';">Changer</button></div>"""
+        
+            context = {'map': map,'boutons':boutons}
+            #retour de la page affichant une carte pour valider l'adresse
             return render(request, 'Connexion/map.html', context)
         if(request.POST["password1"]!=request.POST["password2"]):
             messages.error(request, "Les deux mots de passe ne correspondent pas.")
@@ -55,7 +63,35 @@ def validationAdresse(request):
     utilisateur.save(force_update=True)
     print(utilisateur.coordonneeGeoX)
     return redirect("home")
+
+def changementAdresse(request):
+    if(request.method =='POST'):
+        adresse = request.POST["adresse"]
+        codepostal = request.POST["codePostal"]
+        utilisateur = Profil.objects.get(user=request.user)
+        utilisateur.adresse = adresse
+        utilisateur.codepostal = codepostal
+        utilisateur.ville = request.POST["ville"]
+        utilisateur.save(force_update=True)
+
+        #Creation de la carte
+        map = carte(adresse,codepostal,[coordonnee(adresse,codepostal)])
+
+        #Ajout des boutons de validation adresse ou changement 
+        boutons = """<div class="row align-center"><button class="btn btn-action" onclick="window.location.href = '/Connexion/Validation';"">Valider</button>
+						
+						
+							
+							<button class="btn btn-action" onclick="window.location.href = '/Connexion/changementAdresse';">Changer</button></div>"""
     
+        context = {'map': map,'boutons':boutons}
+        #retour de la page affichant une carte pour valider l'adresse
+        return render(request, 'Connexion/map.html', context)
+
+
+
+    return render(request, 'Connexion/changementAdresse.html')
+
 
 
 def Login_view(request):

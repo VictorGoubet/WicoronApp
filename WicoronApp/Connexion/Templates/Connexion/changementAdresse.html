@@ -49,7 +49,7 @@
 
 		<ol class="breadcrumb">
 			<li><a href="{% url 'home'%}">Menu</a></li>
-			<li class="active">Validation</li>
+			<li class="active">Changement d'adresse</li>
 		</ol>
 
 		<div class="row">
@@ -57,26 +57,46 @@
 			<!-- Article main content -->
 			<div class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Validation</h1>
+					<h1 class="page-title">Changement d'adresse</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="thin text-center">Validation adresse</h3>
+							<h3 class="thin text-center">Changement d'adresse</h3>
 							<p class="text-center text-muted">
-								Veuillez verifier sur la carte qu'il sagit bien de votre domicile.
+								Veuillez changer votre adresse.
 							</p>
 							<hr>
 							
-							<div> {{ map|safe }} </div>
-							<hr>
-							
-										
-											
+							<form method="POST" action="/Connexion/changementAdresse" class="site-form">
+								{% csrf_token %}
 								
-								{{ boutons|safe }} 
+								<div class="top-margin">
+							
+							<label>Adresse<span class="text-danger">*</span></label>
+							<input type="text" name="adresse" required id="id_adresse" maxlength="200" class="form-control">
+				
+					</div>
+					<div class="row top-margin">
+						<div class="col-sm-6">
+							<label>Code Postal<span class="text-danger">*</span></label>
+							<input type="number" name="codePostal" required id="id_codePostal" maxlength="100" class="form-control">
+						</div>
+						<div class="col-sm-6">
+							<label>Ville<span class="text-danger">*</span></label>
+							<input type="text" name="ville" required id="id_ville" maxlength="200" class="form-control">
+						</div>
 						
+					</div>
+					<hr>
+					<div class="row">
+						<div class="BtnInscription">
+							<button class="btn btn-action" type="submit" value="Signup">Valider</button>
+						</div>
+					</div>
+								
+									</form>
 						
 							
 						</div>
