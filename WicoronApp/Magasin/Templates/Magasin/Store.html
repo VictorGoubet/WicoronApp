@@ -35,9 +35,15 @@
 				
 			</div>
 			<div class="navbar-collapse collapse">
+				<div class="right">
+					<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
+				</div>
 				<ul class="nav navbar-nav pull-right">	
-					<li><a href="{% url 'Store'%}">Store</a></li>
+					
+					<li><a href="{% url 'home'%}">Accueil</a></li>
+					<li class="active"><a href="{% url 'Store'%}">Store</a></li>
 					<li><a href="{% url 'Visual'%}">Visualisation</a></li>
+					<li><a class="active" href="{% url 'ChangementAdresse'%}">Changement Adresse</a></li>
 					<li><a class="btn" href="{% url 'Logout'%}">DECONNEXION</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -111,8 +117,12 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="{% url 'Store'%}">Store</a> |
-								<a href="{% url 'Visual'%}">Visualisation</a> |
+								<b>
+									<a href="{% url 'home'%}">Accueil</a> |
+									<a href="{% url 'Store'%}">Store</a> |
+									<a href="{% url 'Visual'%}">Visualisation</a> | 
+									<a href="{% url 'ChangementAdresse'%}">Changement Adresse</a>
+								</b>
 							</p>
 						</div>
 					</div>

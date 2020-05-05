@@ -8,7 +8,7 @@
 	<meta name="author"		content="Equipe Esilv">
 	<meta http-equiv="X-UA-Compatible" content="ie=chrome" />
 	
-	<title>WicoronApp - L'appli qui vous sauve</title>
+	<title>WicoronApp - Accueil</title>
 
 	<link rel="shortcut icon" 				href="{% static 'images/gt_favicon.png' %}">
 	
@@ -34,19 +34,29 @@
 				</a>
 			</div>
 			<div class="navbar-collapse collapse">
+				<div class="right">
+					<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
+				</div>
 				<ul class="nav navbar-nav pull-right">
-					<li class="active">
-						<a href="{% url 'home'%}">Accueil</a>
-					</li>
+					
+					
+					<li class="active"><a href="{% url 'home'%}">Accueil</a></li>
 					{% if user.is_authenticated %}
+					<li><a class="active" href="{% url 'Store'%}">Store</a></li>
+					<li><a class="active" href="{% url 'Visual'%}">Visualisation</a></li>
+					<li><a class="active" href="{% url 'ChangementAdresse'%}">Changement Adresse</a></li>
 					<li><a class="btn" href="{% url 'Logout'%}">DECONNEXION</a></li>
+					
 
 					{% else %}
 					<li><a class="btn" href="{% url 'Login'%}">CONNEXION</a></li>
 					{% endif %}
 				</ul>
+				
 			</div><!--/.nav-collapse -->
+			
 		</div>
+		
 	</div> 
 	<!-- /.navbar -->
 
@@ -124,8 +134,15 @@
 						<div class="widget-body">
 							<p class="simplenav">
 								<b><a href="{% url 'home'%}">Accueil</a></b> | 
+								{% if user.is_authenticated %} 
+								<b><a href="{% url 'Store'%}">Store</a></b> | 
+								<b><a href="{% url 'Visual'%}">Visualisation</a></b> | 
+								<b><a href="{% url 'ChangementAdresse'%}">Changement Adresse</a></b>
+								{%else%}
 								<b><a href="{% url 'Login'%}">Connexion</a></b> | 
 								<b><a href="{% url 'Register'%}">Inscription</a></b>
+								
+								{% endif%}
 							</p>
 						</div>
 					</div>

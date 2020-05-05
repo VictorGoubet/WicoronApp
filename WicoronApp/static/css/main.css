@@ -99,7 +99,7 @@ ul.list-spaces li{ margin-bottom:10px; }
 }
 
 .miniRecap{
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 60% 25% 15%;
 	margin: 2em;
 	display: grid;
 	border-bottom: solid #FF9B22 1px;
@@ -108,6 +108,34 @@ ul.list-spaces li{ margin-bottom:10px; }
 .total{
 	display: inline;
 
+}
+
+.pointer{
+	cursor: pointer;
+}
+.trsprt{
+	background-color: transparent;
+	border:transparent;
+	opacity:1;
+	height: 80%;
+}
+
+.trsprt:hover{
+	opacity:0.8;
+}
+
+.hello{
+	color:white;
+	opacity: 1;
+	margin-left: 1em;
+	font-size: 1.5em;
+	text-align: center;
+}
+
+.right{
+	float: right;
+	margin-top:0em;
+	position:relative;
 }
 
 .PayerBtn{

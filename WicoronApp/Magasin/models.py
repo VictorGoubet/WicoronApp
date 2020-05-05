@@ -19,5 +19,16 @@ class Panier_has_Produits(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
     panier = models.ForeignKey(Panier, on_delete=models.CASCADE)
     quantite = models.IntegerField()
+
+
+class Commande(models.Model):
+    Produits=models.ManyToManyField(Produit,default=None,through='Commande_has_Produits',through_fields=('commande', 'produit'))
+    Client = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+
+class Commande_has_Produits(models.Model):
+    produit =  models.ForeignKey(Produit, on_delete=models.CASCADE)
+    commande = models.ForeignKey(Commande, on_delete=models.CASCADE)
+    quantite = models.IntegerField()
+
     
 
