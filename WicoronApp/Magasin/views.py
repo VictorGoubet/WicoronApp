@@ -15,6 +15,12 @@ def StoreView(request):
     else:
         return redirect('home')
 
+def StoreAllergieView(request):
+    if(request.user.is_authenticated):
+        return render(request,"Magasin/StoreAllergie.html")
+    else:
+        return redirect('home')
+
 def PanierView(request):
     if(request.user.is_authenticated):
         msg=""

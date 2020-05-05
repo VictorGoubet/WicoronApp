@@ -138,6 +138,19 @@ ul.list-spaces li{ margin-bottom:10px; }
 	position:relative;
 }
 
+.allergie{
+	color:#FF9B22;
+	text-decoration: none;
+
+}
+
+.allergie:link{
+	text-decoration: none;
+	color:#FF9B22;
+}
+
+
+
 .PayerBtn{
 	background-color: #FF9B22;
 	border:none;

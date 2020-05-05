@@ -9,7 +9,7 @@
 		<meta name="author"		content="Equipe Esilv">
 		<meta http-equiv="X-UA-Compatible" content="ie=chrome" />
 		
-		<title>WicoronApp - Store</title>
+		<title>WicoronApp - Store Allergie</title>
 	
 		<link rel="shortcut icon" 				href="{% static 'images/gt_favicon.png' %}">
 		
@@ -61,36 +61,18 @@
 			<li class="active">Store</li>
 		</ol>
 
-		<h1 class="center">Store :</h1>
-		<form method="POST" action="{% url 'Panier'%}" >
-			{%csrf_token %}
-			<button class="goPanier" type="submit"><img src="{% static 'images/basket.png' %}" alt="Panier"></button>
-			
-			<div class=ProduitWrapper>
-				{%for produit in prdts%}
-					<div class="prdt center">
-						<h4 class="grd">{{produit.Nom}}</h4>
-						<img src="{{produit.url}}" class="imgPrdt">
-						<p class="prix">{{produit.prix}} €</p>
-						<div class="incrementor">
-							<img class="pm" src="{% static 'images/down.png' %}" id=IDm_{{produit.Nom}} onclick="incInput(-1,this.getAttribute('id'))"/>
-							<img class="pm" src="{% static 'images/up.png' %}" id=IDp_{{produit.Nom}} onclick="incInput(1,this.getAttribute('id'))"/>
-							<input class="n" name="inpt_{{produit.Nom}}" type="text" value="0" id=IDinpt_{{produit.Nom}} />
-				
-						</div>
-					</div>
-					
-				{% endfor %}
-			</div>
-			<a class="allergie center" href="{% url 'StoreAllergie'%}"><h2>Allergie ?</h2></a>
-
-	</div>	
-
-		</form>
+		<h1 class="center">Store Allergie :</h1>
+		<a href="{% url 'Store'%}" ><img src="{% static 'images/backArrow.png' %}" alt="Store"></a>
+		<i>
+			<h3 class="center allergie">Désolé ce store n'est pas encore développé.. On pense à vous !</h3>
+		</i>
+		<br><br><br><br><br>
+	</div>
+		
 		
 	
 
-	<footer id="footer" class="top-space">
+<footer id="footer" class="top-space">
 
 		<div class="footer1">
 			<div class="container">

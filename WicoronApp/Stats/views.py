@@ -15,7 +15,7 @@ def mapUtilisateur(request):
         map = carte("Paris",75000,coordonneeListe)
         context = {'map': map}
 
-        return render(request, 'Stats/Visual.html', context)
+        return render(request, 'Stats/Visual1.html', context)
     else:
         return redirect('home')
 
@@ -41,7 +41,7 @@ def StatProduits(request):
         plt.grid()
         plt.savefig(BASE_DIR+"/static/images/barplot.png")
         
-        return render(request, 'Stats/Visual.html',{"affichage":True})
+        return render(request, 'Stats/Visual2.html',{"affichage":True})
     else:
         return redirect('home')
 
