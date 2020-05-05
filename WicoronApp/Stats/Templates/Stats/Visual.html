@@ -68,7 +68,7 @@
 						<a href="{% url 'mapUtilisateur' %}"">Visualisation 1</a>
 					</li>
 					<li>
-						<a href="">Visualisation 2</a>
+						<a href="{% url 'StatProduits' %}">Visualisation 2</a>
 					</li>
 					<li>
 						<a href="">Visualisation 3</a>
@@ -80,7 +80,11 @@
 
 			<div class="col-md-8 maincontent">
 				<h1 class="center">VISUALISATION :</h1>
-				<div> {{ map|safe }} </div>
+				<div> {{ map|safe }} {{response}}</div>
+				{%if affichage %}
+					<img class="center" src="{% static 'images/barplot.png'%}">
+				{%endif%}
+
 			</div>
 		</div>
 	</div>	<!-- /container -->

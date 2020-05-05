@@ -63,7 +63,7 @@
 
 		<h1 class="center">Panier :</h1>
 		<a href="{% url 'Store'%}" ><img src="{% static 'images/backArrow.png' %}" alt="Panier"></a>
-
+		<h4 class="center">{{msg}}</h4>
 		<div class=Recap>
 			
 			{%for produit,quantite in recap%}

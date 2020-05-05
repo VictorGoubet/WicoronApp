@@ -34,9 +34,11 @@
 				</a>
 			</div>
 			<div class="navbar-collapse collapse">
-				<div class="right">
-					<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
-				</div>
+				{% if user.is_authenticated %}
+					<div class="right">
+						<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
+					</div>
+				{% endif %}
 				<ul class="nav navbar-nav pull-right">
 					
 					

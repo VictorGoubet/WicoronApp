@@ -65,7 +65,7 @@
 		<form method="POST" action="{% url 'Panier'%}" >
 			{%csrf_token %}
 			<button class="goPanier" type="submit"><img src="{% static 'images/basket.png' %}" alt="Panier"></button>
-
+			
 			<div class=ProduitWrapper>
 				{%for produit in prdts%}
 					<div class="prdt center">
@@ -146,7 +146,7 @@
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script src="{% static 'js/store.js' %}"></script>
+	<script src="{% static 'js/incrementeur.js' %}"></script>
 	<script src="{% static 'js/headroom.min.js' %}"></script>
 	<script src="{% static 'js/jQuery.headroom.min.js' %}"></script>
 	<script src="{% static 'js/template.js' %}"></script>
