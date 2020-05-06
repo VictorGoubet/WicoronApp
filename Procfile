@@ -1,0 +1,1 @@
+web: gunicorn WicoronApp.wsgi --log-file -
