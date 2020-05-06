@@ -30,8 +30,7 @@ def mapDemande(request):
         utilisateur = User.objects.all()
         for e in utilisateur:
             commandeParClient = {}
-            p = Commande.objects.filter(Client = e)
-            print(e)           
+            p = Commande.objects.filter(Client = e)        
             for commandes in p:
                 for articles in Commande_has_Produits.objects.filter(commande=commandes):
                     if(articles.produit not in commandeParClient.keys()):

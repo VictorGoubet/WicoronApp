@@ -32,7 +32,7 @@ def Register(request):
                 map = carte(adresse,codepostal,[coordonnee(adresse,codepostal)])
 
                 #Ajout des boutons de validation adresse ou changement 
-                boutons = """<div class="row align-center"><button class="btn btn-action" onclick="window.location.href = '/Connexion/Validation';"">Valider</button>
+                boutons = """<div class="row align-center center"><button class="btn btn-action" onclick="window.location.href = '/Connexion/Validation';"">Valider</button>
                                 
                                 
                                     
@@ -58,13 +58,10 @@ def Register(request):
 def validationAdresse(request):
     if(request.user.is_authenticated):
         utilisateur = Profil.objects.get(user=request.user)
-
         c = coordonnee(utilisateur.adresse,utilisateur.codePostal)
         utilisateur.coordonneeGeoX = c[0]
         utilisateur.coordonneeGeoY = c[1]
-        print(c[0],type(c[1]))
         utilisateur.save(force_update=True)
-        print(utilisateur.coordonneeGeoX)
         return redirect("home")
     else:
         return redirect('home')
@@ -76,29 +73,28 @@ def changementAdresse(request):
             codepostal = request.POST["codePostal"]
             utilisateur = Profil.objects.get(user=request.user)
             utilisateur.adresse = adresse
-            utilisateur.codepostal = codepostal
+            utilisateur.codePostal = codepostal
             utilisateur.ville = request.POST["ville"]
             utilisateur.save(force_update=True)
-
             #Creation de la carte
             map = carte(adresse,codepostal,[coordonnee(adresse,codepostal)])
 
             #Ajout des boutons de validation adresse ou changement 
             boutons = """<div class="row align-center center"><button class="btn btn-action" onclick="window.location.href = '/Connexion/Validation';"">Valider</button>
-                            
-                            
-                                
+
                                 <button class="btn btn-action" onclick="window.location.href = '/Connexion/changementAdresse';">Changer</button></div>"""
         
             context = {'map': map,'boutons':boutons}
             #retour de la page affichant une carte pour valider l'adresse
             return render(request, 'Connexion/map.html', context)
+    
+        return render(request, 'Connexion/changementAdresse.html')
     else:
         return redirect('home')
 
 
 
-    return render(request, 'Connexion/changementAdresse.html')
+    
 
 
 
