@@ -30,7 +30,7 @@ def carte(ville,codepostal,coordonneeListe):
     coordonneeListe = liste de coordonnée géographique
     RETURN = une carte de la ville avec les différents points
     """
-    c = folium.Map(location=coordonnee(ville,codepostal),zoom_start=15)
+    c = folium.Map(location=coordonnee(ville,codepostal),zoom_start=12)
     for e in coordonneeListe:
         folium.Marker(e).add_to(c)
     #c.save('carte.html')

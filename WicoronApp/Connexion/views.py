@@ -20,9 +20,9 @@ def Register(request):
                 adresse = form.cleaned_data["adresse"]
                 codepostal = form.cleaned_data["codePostal"]
                 nbPersonne = form.cleaned_data["nbPersonne"]
-
+                numero = form.cleaned_data["numero"]
                 ville = form.cleaned_data["ville"]
-                profil = Profil(user=user, codePostal = codepostal,adresse=adresse,nbPersonne=nbPersonne,ville=ville,coordonneeGeoX=0,coordonneeGeoY=0)
+                profil = Profil(user=user, codePostal = codepostal,adresse=adresse,nbPersonne=nbPersonne,ville=ville,coordonneeGeoX=0,coordonneeGeoY=0,numero=numero)
                 profil.save()
                 basket=Panier(Client=user)
                 basket.save()

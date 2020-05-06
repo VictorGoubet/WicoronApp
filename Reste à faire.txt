@@ -2,7 +2,7 @@
 
 
 -Encore au quelques visualisations
--Ajouter numero de tel dans le formulaire
+-Ajouter numero de tel dans le formulaire FAIT
 -Limiter à une commande par semaine (ajouter la date à une commande)
 -Ajouter des produits (il doit y en avoir 20)
 -Rediger le compte rendu

@@ -4,6 +4,9 @@ from Connexion.models import Profil
 from Magasin.models import Commande,Commande_has_Produits
 import matplotlib.pyplot as plt
 from WicoronApp.settings import BASE_DIR
+import folium
+from Connexion.carterepo import *
+from django.contrib.auth.models import User
 # Create your views here.
 
 def mapUtilisateur(request):
@@ -19,6 +22,40 @@ def mapUtilisateur(request):
     else:
         return redirect('home')
 
+def mapDemande(request):
+    if(request.user.is_authenticated):
+        coordonneeListe = []
+        map = folium.Map(location=coordonnee("Paris",75000),zoom_start=12)
+
+        utilisateur = User.objects.all()
+        for e in utilisateur:
+            commandeParClient = {}
+            p = Commande.objects.filter(Client = e)
+            print(e)           
+            for commandes in p:
+                for articles in Commande_has_Produits.objects.filter(commande=commandes):
+                    if(articles.produit not in commandeParClient.keys()):
+                        commandeParClient[articles.produit.Nom] = articles.quantite
+                    if(articles.produit in commandeParClient.keys()):
+                        commandeParClient[articles.produit.Nom] += articles.quantite
+            if(commandeParClient != {}):
+                profil = Profil.objects.get(user = e)
+                pop = folium.Popup(html = listeCommandeToString(e.first_name,commandeParClient))
+                folium.Marker([profil.coordonneeGeoX,profil.coordonneeGeoY],popup=pop).add_to(map)
+        
+        context = {'map': map._repr_html_()}
+
+        return render(request, 'Stats/Visual3.html', context)
+    else:
+        return redirect('home')
+
+
+def listeCommandeToString(client,dic):
+    output =  '<p style="white-space: nowrap;"><span><b>' +  client + "</b></span><BR>"
+    for e in dic.keys():
+        output += '<span>' + str(dic[e]) + " " + e + '</span><BR>'
+    output += '</p>'
+    return output[:-1]
 
 def StatProduits(request):
     if(request.user.is_authenticated):
