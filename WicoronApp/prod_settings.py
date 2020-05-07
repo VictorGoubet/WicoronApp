@@ -5,7 +5,6 @@ DEBUG = True
 TEMPLATE_DEBUG=True
 
 DATABASES['default']=dj_database_url.config()
-TEMPLATES['APP_DIRS']=TRUE
 
 ALLOWED_HOSTS = ['wicoronapp.herokuapp.com']
 
