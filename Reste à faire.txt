@@ -1,9 +1,5 @@
 
-
--Bug incrementeur produit
--label visualisation produits
 -Encore au quelques visualisations
--Limiter à une commande par semaine (ajouter la date à une commande)
 -Rediger le compte rendu
 
 

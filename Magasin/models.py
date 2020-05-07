@@ -1,6 +1,7 @@
 from django.db import models
-
+import datetime
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class Produit(models.Model):
     Nom=models.CharField(max_length=50)
@@ -24,6 +25,7 @@ class Panier_has_Produits(models.Model):
 class Commande(models.Model):
     Produits=models.ManyToManyField(Produit,default=None,through='Commande_has_Produits',through_fields=('commande', 'produit'))
     Client = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    Date=models.DateField(default=timezone.now() )
 
 class Commande_has_Produits(models.Model):
     produit =  models.ForeignKey(Produit, on_delete=models.CASCADE)

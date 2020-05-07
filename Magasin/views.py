@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Produit,Panier,Panier_has_Produits,Commande,Commande_has_Produits
 from Connexion.models import Profil
+import datetime
 
 import logging
 import pprint
@@ -32,7 +33,7 @@ def PanierView(request):
             for prdt in request.POST:
                 if(prdt[:4]=="inpt" and int(request.POST[prdt])>0 ):
                     #On récupére l'entité produit 
-                    newProduit=Produit.objects.get(Nom=prdt[5:])
+                    newProduit=Produit.objects.get(id=prdt[5:])
                     #On verifie si le produit n'est pas déja dans le panier
                     if(newProduit not in basket.Produits.all()):
                         
@@ -59,22 +60,28 @@ def PanierView(request):
             for info in request.GET:
 
                 if(request.GET[info]=="pay"):
-                    contenu=Panier_has_Produits.objects.filter(panier=basket).all()
-                    if(len(contenu)>0):
-                        #On enregistre la commande :
-                        NewCommande=Commande(Client=request.user)
-                        NewCommande.save()
-                        #On vide le panier
-                        
-                        for x in contenu:
-                            NewCommande.Produits.add(x.produit,through_defaults={'quantite':x.quantite})
-                            x.delete()
-                        NewCommande.save()
-                        msg="Votre commande est passée !"
+                    DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
+                    delta=DerniereDate-datetime.date.today()
+                    
+                    if(delta.days<7):
+                        msg="Vous avez déja commandé dans la semaine ! Veuillez attendre la semaine prochaine"
                     else:
-                        msg="Il n'y a rien dans votre panier !"
+                        contenu=Panier_has_Produits.objects.filter(panier=basket).all()
+                        if(len(contenu)>0):
+                            #On enregistre la commande :
+                            NewCommande=Commande(Client=request.user)
+                            NewCommande.save()
+                            #On vide le panier
                             
-                    #En réalité il y aurait une autre page sur la quelle on redirgie pour le paiement
+                            for x in contenu:
+                                NewCommande.Produits.add(x.produit,through_defaults={'quantite':x.quantite})
+                                x.delete()
+                            NewCommande.save()
+                            msg="Votre commande est passée !"
+                        else:
+                            msg="Il n'y a rien dans votre panier !"
+                                
+                        #En réalité il y aurait une autre page sur la quelle on redirgie pour le paiement
 
                 else:
                     #On récupére le produit à supprimer :

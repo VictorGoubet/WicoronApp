@@ -73,9 +73,10 @@
 						<img src="{{produit.url}}" class="imgPrdt">
 						<p class="prix">{{produit.prix}} €</p>
 						<div class="incrementor">
-							<img class="pm" src="{% static 'images/down.png' %}" id=IDm_{{produit.Nom}} onclick="incInput(-1,this.getAttribute('id'))"/>
-							<img class="pm" src="{% static 'images/up.png' %}" id=IDp_{{produit.Nom}} onclick="incInput(1,this.getAttribute('id'))"/>
-							<input class="n" name="inpt_{{produit.Nom}}" type="text" value="0" id=IDinpt_{{produit.Nom}} />
+							<img class="pm" src="{% static 'images/down.png' %}" id=IDm_{{produit.id}} onclick="incInput(-1,this.getAttribute('id'))"/>
+							
+							<img class="pm" src="{% static 'images/up.png' %}" id=IDp_{{produit.id}} onclick="incInput(1,this.getAttribute('id'))"/>
+							<input class="n" name="inpt_{{produit.id}}" type="text" value="0" id=IDinpt_{{produit.id}} />
 				
 						</div>
 					</div>

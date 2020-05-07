@@ -69,13 +69,13 @@ def StatProduits(request):
                 else:
                     dictCmd[i.Nom ]+=qt
 
-        f = plt.figure()
+        plt.bar(dictCmd.keys(), dictCmd.values(),width=0.75,bottom=0,color='#FF9B22',alpha=0.65)
         plt.title('Consommation des produits')
+        plt.xticks(rotation=80)
         plt.xlabel('Produits')
         plt.ylabel('Quantité commandée')
-        plt.bar(dictCmd.keys(), dictCmd.values(),width=1.0,bottom=0,color='Green',alpha=0.65)
-        plt.grid()
-        plt.savefig(BASE_DIR+"/static/images/barplot.png")
+
+        plt.savefig(BASE_DIR+"/static/images/barplot.png",format='png',bbox_inches="tight")
         
         return render(request, 'Stats/Visual2.html',{"affichage":True})
     else:
