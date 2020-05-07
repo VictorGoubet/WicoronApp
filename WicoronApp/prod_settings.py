@@ -2,7 +2,7 @@ from .settings import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://wicoronapp.herokuapp.com/']
 TEMPLATE_DEBUG=False
 
 
