@@ -1,6 +1,4 @@
 
 -Encore au quelques visualisations
--Rediger le compte rendu
-
 
 -Bonus : le mettre en ligne (HEROKU) (en cours)
