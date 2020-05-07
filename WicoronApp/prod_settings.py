@@ -12,4 +12,4 @@ TEMPLATE_DEBUG=True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-SECRET_KEY = 'j5)ti68(p_j30u$dtl0bm6xbhn0vkzi^q05--ejf*97vu)$fe1'
+SECRET_KEY = os.environ['SECRET_KEY']
