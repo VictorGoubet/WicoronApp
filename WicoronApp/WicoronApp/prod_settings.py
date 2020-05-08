@@ -1,12 +1,12 @@
 from .settings import *
 import dj_database_url
 
-DEBUG = True
-TEMPLATE_DEBUG=True
+DEBUG = False
+TEMPLATE_DEBUG=False
 
 DATABASES['default']=dj_database_url.config()
 
-ALLOWED_HOSTS = ['wicoronapp.herokuapp.com']
+ALLOWED_HOSTS = ['wicoronapp.herokuapp.com','.victorgoubet.com']
 
 MIDDLEWARE+=['whitenoise.middleware.WhiteNoiseMiddleware',]
 

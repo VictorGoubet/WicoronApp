@@ -70,6 +70,9 @@ TEMPLATES = [
      },
  ]
 
+
+
+
 WSGI_APPLICATION = 'WicoronApp.wsgi.application'
 
 
