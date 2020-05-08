@@ -63,13 +63,15 @@ def PanierView(request):
                     DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
                     delta=DerniereDate-datetime.date.today()
                     
-                    if(delta.days<7):
+                    if(delta.days<-7):
                         msg="Vous avez déja commandé dans la semaine ! Veuillez attendre la semaine prochaine"
                     else:
                         contenu=Panier_has_Produits.objects.filter(panier=basket).all()
+                        prof=Profil.objects.get(user=request.user)
+
                         if(len(contenu)>0):
                             #On enregistre la commande :
-                            NewCommande=Commande(Client=request.user)
+                            NewCommande=Commande(Client=request.user,cX=prof.coordonneeGeoX,cY=prof.coordonneeGeoY)
                             NewCommande.save()
                             #On vide le panier
                             

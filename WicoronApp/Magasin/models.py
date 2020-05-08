@@ -27,6 +27,8 @@ class Commande(models.Model):
     Produits=models.ManyToManyField(Produit,default=None,through='Commande_has_Produits',through_fields=('commande', 'produit'))
     Client = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
     Date=models.DateField(default=utils.timezone.now)
+    cX=models.FloatField(default=0.0)
+    cY=models.FloatField(default=0.0)
 
 class Commande_has_Produits(models.Model):
     produit =  models.ForeignKey(Produit, on_delete=models.CASCADE)

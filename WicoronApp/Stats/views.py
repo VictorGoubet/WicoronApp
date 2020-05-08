@@ -5,9 +5,40 @@ from Magasin.models import Commande,Commande_has_Produits
 import matplotlib.pyplot as plt
 from WicoronApp.settings import BASE_DIR
 import folium
+from folium import plugins
+from folium.plugins import HeatMap
 from Connexion.carterepo import *
 from django.contrib.auth.models import User
 # Create your views here.
+
+
+
+def heatmapDemande(request):
+    if(request.user.is_authenticated):
+        listecmd=Commande.objects.all()
+        coordoneListe=[(cmd.cX,cmd.cY) for cmd in listecmd ]
+        data=[]
+        for k in range(len(coordoneListe)) :#On ajoute les coordonnées de chaque commande à notre liste Data sous forme normalisée
+            l=[]
+            l.append(coordoneListe[k][0])
+            l.append(coordoneListe[k][1])
+            l.append(k)
+            data.append(l)
+
+        m = folium.Map([48, 5], tiles='stamentoner', zoom_start=5)#On créer une map Folium
+
+
+        #Creation de la Heatmap
+        HeatMap(data,gradient={0.2: "green", 0.5: "yellow", 0.8: "red"},radius = 35   ).add_to(folium.FeatureGroup(name='Heat Map',).add_to(m))
+
+                               
+
+        folium.LayerControl().add_to(m)
+
+
+        return render(request,'Stats/Visual4.html',{'map':m._repr_html_()})
+    else:
+        return redirect('home')
 
 def mapUtilisateur(request):
     if(request.user.is_authenticated):
@@ -25,7 +56,7 @@ def mapUtilisateur(request):
 def mapDemande(request):
     if(request.user.is_authenticated):
         coordonneeListe = []
-        map = folium.Map(location=coordonnee("Paris",75000),zoom_start=12)
+        map = folium.Map(location=coordonnee("Paris",75000),zoom_start=6)
 
         utilisateur = User.objects.all()
         for e in utilisateur:
@@ -81,6 +112,10 @@ def StatProduits(request):
     else:
         return redirect('home')
 
+
+
+
+
 def Visual(request):
     # Page d'arriver, on choisit ici d'afficher directement la map
-    return redirect('mapUtilisateur')
+    return redirect('heatmapDemande')
