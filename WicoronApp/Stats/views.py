@@ -107,6 +107,7 @@ def StatProduits(request):
         plt.ylabel('Quantité commandée')
 
         plt.savefig(BASE_DIR+"/static/images/barplot.png",format='png',bbox_inches="tight")
+        plt.savefig(BASE_DIR+"/staticfiles/images/barplot.png",format='png',bbox_inches="tight")
         
         return render(request, 'Stats/Visual2.html',{"affichage":True})
     else:

@@ -63,8 +63,8 @@ def PanierView(request):
                     DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
                     delta=DerniereDate-datetime.date.today()
                     
-                    if(delta.days<-7):
-                        msg="Vous avez déja commandé dans la semaine ! Veuillez attendre la semaine prochaine"
+                    if(delta.days<1):
+                        msg="Vous avez déja commandé aujourd'hui ! Veuillez attendre demain"
                     else:
                         contenu=Panier_has_Produits.objects.filter(panier=basket).all()
                         prof=Profil.objects.get(user=request.user)
