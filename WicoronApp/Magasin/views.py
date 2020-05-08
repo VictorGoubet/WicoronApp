@@ -60,10 +60,13 @@ def PanierView(request):
             for info in request.GET:
 
                 if(request.GET[info]=="pay"):
-                    DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
-                    delta=DerniereDate-datetime.date.today()
-                    
-                    if(delta.days<1):
+                    try:
+                        DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
+                        delta=(DerniereDate-datetime.date.today()).days
+                    except :
+                        delta=50
+
+                    if(delta<1):
                         msg="Vous avez déja commandé aujourd'hui ! Veuillez attendre demain"
                     else:
                         contenu=Panier_has_Produits.objects.filter(panier=basket).all()
