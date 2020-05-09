@@ -222,6 +222,24 @@ ul.list-spaces li{ margin-bottom:10px; }
 	position:sticky;
 }
 
+.containerVisual{
+	grid-template-columns: 25% 75% ;
+	display: grid;
+}
+
+.VisualGroup{
+			
+			margin-top: 5em;
+			padding: 5%;
+		}
+.VisualGroup ol{
+	border-right: 2px solid #FF8C00; 
+}
+.graphcontent{
+	padding: 5%;
+	
+}
+
 img { max-width:100%; }
 img.pull-right { margin-left: 10px; }
 img.pull-left { margin-right: 10px; }
@@ -234,7 +252,7 @@ img.pull-left { margin-right: 10px; }
 	.sidebar .widget { margin-bottom:20px; }
 	.sidebar h1, .sidebar .h1, .sidebar h2, .sidebar .h2, .sidebar h3, .sidebar .h3 { margin-top:20px; } 
 	.Panier{width: 20em;}
-	.VisualGroup{width: 20em; border-right: 2px solid #FF8C00; border-radius: 10px;}
+	
 	
 	
 
