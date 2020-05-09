@@ -1,5 +1,5 @@
 {% extends 'Stats/BaseVisual.html'%}
 {% load static %}
 {%block graph%}
-	<img class="center imgGraph" src="{% static 'images/barplot.png'%}">
+	{{barplot|safe}}
 {%endblock%}

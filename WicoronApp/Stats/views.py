@@ -2,7 +2,12 @@ from django.shortcuts import render,redirect
 from Connexion.carterepo import carte
 from Connexion.models import Profil
 from Magasin.models import Commande,Commande_has_Produits
-import matplotlib.pyplot as plt
+
+#import matplotlib.pyplot as plt
+import plotly
+import plotly.express as px
+import pandas as pd
+
 from WicoronApp.settings import BASE_DIR
 import folium
 from folium import plugins
@@ -56,7 +61,7 @@ def mapUtilisateur(request):
 def mapDemande(request):
     if(request.user.is_authenticated):
         coordonneeListe = []
-        map = folium.Map(location=coordonnee("Paris",75000),zoom_start=6)
+        map = folium.Map(location=coordonnee("Vesdun",18360),zoom_start=5.5)
 
         utilisateur = User.objects.all()
         for e in utilisateur:
@@ -100,16 +105,17 @@ def StatProduits(request):
                 else:
                     dictCmd[i.Nom ]+=qt
 
-        plt.bar(dictCmd.keys(), dictCmd.values(),width=0.75,bottom=0,color='#FF9B22',alpha=0.65)
-        plt.title('Consommation des produits')
-        plt.xticks(rotation=80)
-        plt.xlabel('Produits')
-        plt.ylabel('Quantité commandée')
 
-        plt.savefig(BASE_DIR+"/static/images/barplot.png",format='png',bbox_inches="tight")
-        plt.savefig(BASE_DIR+"/staticfiles/images/barplot.png",format='png',bbox_inches="tight")
+        data=pd.DataFrame( data={ 'produits':list(dictCmd.keys()),'quantité':list(dictCmd.values()) } )
+
+        fig = px.bar(data, x='produits', y='quantité',
+             hover_data=['produits', 'quantité'], color='quantité',
+             height=500)
+
+        graph_div = plotly.offline.plot(fig, auto_open = False, output_type="div")
         
-        return render(request, 'Stats/Visual2.html',{"affichage":True})
+        
+        return render(request, 'Stats/Visual2.html',{"barplot":graph_div})
     else:
         return redirect('home')
 
