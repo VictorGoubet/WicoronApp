@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta name="viewport"   content="width=device-width, initial-scale=1.0">
+	<meta name="description"content="WicoronApp est une plateforme ayant pour but de faciliter la vie de ceux qui sont en confinement total">
+	<meta name="author"		content="Equipe Esilv">
+	<meta http-equiv="X-UA-Compatible" content="ie=chrome" />
+	
+	<title>WicoronApp - Accueil</title>
+
+	<link rel="shortcut icon" 				href="{% static 'images/gt_favicon.png' %}">
+	
+	<link rel="stylesheet" media="screen" 	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" 					href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" 					href="{% static 'css/font-awesome.min.css'%}">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" 					href="{% static 'css/bootstrap-theme.css'%}" media="screen" >
+	<link rel="stylesheet" 					href="{% static 'css/main.css'%}?v={% now 'U' %}">
+
+
+</head>
+
+<body class="home">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class=" navbar-header ">
+				
+				<a class="navbar-brand verticalCenter" href="{% url 'home'%}">
+					<img src="{% static 'images/logo.png' %}" alt="WicoronApp">
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				{% if user.is_authenticated %}
+					<div class="right">
+						<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
+					</div>
+				{% endif %}
+				<ul class="nav navbar-nav pull-right">
+					
+					
+					<li class="active"><a href="{% url 'home'%}">Accueil</a></li>
+					{% if user.is_authenticated %}
+					<li><a class="active" href="{% url 'Store'%}">Store</a></li>
+					<li><a class="active" href="{% url 'Visual'%}">Visualisation</a></li>
+					<li><a class="active" href="{% url 'ChangementAdresse'%}">Changement Adresse</a></li>
+					<li><a class="btn" href="{% url 'Logout'%}">DECONNEXION</a></li>
+					
+
+					{% else %}
+					<li><a class="btn" href="{% url 'Login'%}">CONNEXION</a></li>
+					{% endif %}
+				</ul>
+				
+			</div><!--/.nav-collapse -->
+			
+		</div>
+		
+	</div> 
+	<!-- /.navbar -->
+
+	<!-- Header -->
+	<header id="head">
+		<div class="container">
+			<div class="row">
+				<h1 class="lead">WicoronApp </h1>
+				<p class="tagline"> L'appli qui prend soin de vous</p>
+				{% if user.is_authenticated %} 
+				<p>
+					<a class="btn btn-action btn-lg" role="button" href="{% url 'Store'%}">ACCES AU MAGASIN</a>
+				</p>
+				{% else %}
+				<p><a class="btn btn-default btn-lg" role="button" href="{% url 'Login'%}">CONNEXION</a> <a class="btn btn-action btn-lg" role="button" href="{% url 'Register'%}">INSCRIPTION</a>
+
+				</p>
+
+				{% endif %}
+			</div>
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- Intro -->
+	
+
+	<!-- container -->
+	<div class="container">
+
+		<h2 class="text-center top-space">Note à la population</h2>
+		<br>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h3>WicoronApp qu'est ce que c'est ?</h3>
+				<p> WicoronApp est une application qui vous aidera en cas de confinement total. Simple et graphique, WicoronApp vous permet de commander les produits dont vous avez besoin et d'avoir accès à des statistiques concernant les commandes.</p>
+			</div>
+			<div class="col-sm-6">
+				<h3>A qui s'adresse cette plateforme ?</h3>
+				<p>
+					A tous ceux qui vivent un confinement total et qui en ont besoin ! La plateforme est là pour l'entraide et la bienveillance !
+			</div>
+		</div> <!-- /row -->
+
+</div>	<!-- /container -->
+	
+
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+								<a href="mailto:#">3ea6e2c6.devinci.onmicrosoft.com@emea.teams.ms</a><br>
+								<br>
+								12 Avenue Léonard de Vinci, 92400 Courbevoie
+							</p>	
+						</div>
+					</div>
+
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+								<b><a href="{% url 'home'%}">Accueil</a></b> | 
+								{% if user.is_authenticated %} 
+								<b><a href="{% url 'Store'%}">Store</a></b> | 
+								<b><a href="{% url 'Visual'%}">Visualisation</a></b> | 
+								<b><a href="{% url 'ChangementAdresse'%}">Changement Adresse</a></b>
+								{%else%}
+								<b><a href="{% url 'Login'%}">Connexion</a></b> | 
+								<b><a href="{% url 'Register'%}">Inscription</a></b>
+								
+								{% endif%}
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2020, ESILV. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="{% static 'js/headroom.min.js' %}"></script>
+	<script src="{% static 'js/jQuery.headroom.min.js' %}"></script>
+	<script src="{% static 'js/template.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		{% load static %}
+		
+		<meta charset="utf-8">
+		<meta name="viewport"   content="width=device-width, initial-scale=1.0">
+		<meta name="description"content="WicoronApp est une plateforme ayant pour but de faciliter la vie de ceux qui sont en confinement total">
+		<meta name="author"		content="Equipe Esilv">
+		<meta http-equiv="X-UA-Compatible" content="ie=chrome" />
+		
+		<title>WicoronApp - Store</title>
+	
+		<link rel="shortcut icon" 				href="{% static 'images/gt_favicon.png' %}">
+		
+		<link rel="stylesheet" media="screen" 	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+		<link rel="stylesheet" 					href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" 					href="{% static 'css/font-awesome.min.css'%}">
+	
+		<!-- Custom styles for our template -->
+		<link rel="stylesheet" 					href="{% static 'css/bootstrap-theme.css'%}" media="screen" >
+		<link rel="stylesheet" 					href="{% static 'css/main.css'%}?v={% now 'U' %}" media="screen">
+	
+	
+	</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a href ="{% url 'home'%}"><img src="{% static 'images/logo.png' %}" alt="WicoronApp"></a>
+				
+			</div>
+			<div class="navbar-collapse collapse">
+				<div class="right">
+					<h3 class="hello right">Salut <br> {{user.username|title}}</h3>
+				</div>
+				<ul class="nav navbar-nav pull-right">	
+					
+					<li><a href="{% url 'home'%}">Accueil</a></li>
+					<li class="active"><a href="{% url 'Store'%}">Store</a></li>
+					<li><a href="{% url 'Visual'%}">Visualisation</a></li>
+					<li><a class="active" href="{% url 'ChangementAdresse'%}">Changement Adresse</a></li>
+					<li><a class="btn" href="{% url 'Logout'%}">DECONNEXION</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container stack">
+		
+		<ol class="breadcrumb">
+			<li>Accueil</li>
+			<li class="active">Store</li>
+		</ol>
+
+		<h1 class="center">Store :</h1>
+		<form method="POST" action="{% url 'Panier'%}" >
+			{%csrf_token %}
+			<button class="goPanier" type="submit"><img src="{% static 'images/basket.png' %}" alt="Panier"></button>
+			
+			<div class=ProduitWrapper>
+				{%for produit in prdts%}
+					<div class="prdt center">
+						<h4 class="grd">{{produit.Nom}}</h4>
+						<img src="{{produit.url}}" class="imgPrdt">
+						<p class="prix">{{produit.prix}} €</p>
+						<div class="incrementor">
+							<img class="pm" src="{% static 'images/down.png' %}" id=IDm_{{produit.id}} onclick="incInput(-1,this.getAttribute('id'))"/>
+							
+							<img class="pm" src="{% static 'images/up.png' %}" id=IDp_{{produit.id}} onclick="incInput(1,this.getAttribute('id'))"/>
+							<input class="n" name="inpt_{{produit.id}}" type="text" value="0" id=IDinpt_{{produit.id}} />
+				
+						</div>
+					</div>
+					
+				{% endfor %}
+			</div>
+			<a class=" center" href="{% url 'StoreAllergie'%}"><h2 class="allergie">Allergie ?</h2></a>
+
+	</div>	
+
+		</form>
+		
+	
+
+	<footer id="footer" class="top-space">
+
+		<div class="footer1">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-3 widget">
+						<h3 class="widget-title">Contact</h3>
+						<div class="widget-body">
+								<a href="mailto:#">3ea6e2c6.devinci.onmicrosoft.com@emea.teams.ms</a><br>
+								<br>
+								12 Avenue Léonard de Vinci, 92400 Courbevoie
+							</p>	
+						</div>
+					</div>
+
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+		<div class="footer2">
+			<div class="container">
+				<div class="row">
+					
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav">
+								<b>
+									<a href="{% url 'home'%}">Accueil</a> |
+									<a href="{% url 'Store'%}">Store</a> |
+									<a href="{% url 'Visual'%}">Visualisation</a> | 
+									<a href="{% url 'ChangementAdresse'%}">Changement Adresse</a>
+								</b>
+							</p>
+						</div>
+					</div>
+
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="text-right">
+								Copyright &copy; 2020, ESILV. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+							</p>
+						</div>
+					</div>
+
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+
+	</footer>	
+		
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="{% static 'js/incrementeur.js' %}"></script>
+	<script src="{% static 'js/headroom.min.js' %}"></script>
+	<script src="{% static 'js/jQuery.headroom.min.js' %}"></script>
+	<script src="{% static 'js/template.js' %}"></script>
+</body>
+</html>
