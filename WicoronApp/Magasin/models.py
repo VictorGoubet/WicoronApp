@@ -15,7 +15,7 @@ class Panier(models.Model):
 
 
     Produits=models.ManyToManyField(Produit,default=None,through='Panier_has_Produits',through_fields=('panier', 'produit'))
-    Client = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    Client = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
 
 class Panier_has_Produits(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)
