@@ -63,11 +63,11 @@ def PanierView(request):
                     
                     try:
                         DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
-                        delta=(DerniereDate-utils.timezone.now().date()).days
+                        delta=(utils.timezone.now().date()-DerniereDate).days
 
                     except :
                         delta=50
-
+                    print(delta)
                     if(delta<1):
                         msg="Vous avez déja commandé aujourd'hui ! Veuillez attendre demain"
                     else:
