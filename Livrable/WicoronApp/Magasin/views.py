@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Produit,Panier,Panier_has_Produits,Commande,Commande_has_Produits
 from Connexion.models import Profil
-import datetime
-
+from django import utils
 import logging
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -23,6 +22,7 @@ def StoreAllergieView(request):
         return redirect('home')
 
 def PanierView(request):
+
     if(request.user.is_authenticated):
         msg=""
         #On récupére le panier du client
@@ -60,12 +60,14 @@ def PanierView(request):
             for info in request.GET:
 
                 if(request.GET[info]=="pay"):
+                    
                     try:
                         DerniereDate=Commande.objects.filter(Client=request.user).latest('Date').Date
-                        delta=(DerniereDate-datetime.date.today()).days
+                        delta=(utils.timezone.now().date()-DerniereDate).days
+
                     except :
                         delta=50
-
+                    print(delta)
                     if(delta<1):
                         msg="Vous avez déja commandé aujourd'hui ! Veuillez attendre demain"
                     else:
