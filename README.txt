@@ -1,6 +1,7 @@
 
 Projet python ESILV 2020  - METHODE D'INSTALLATION
 
+Le dossier livrable est un dossier regroupant tout l'essentiel du projet, vous etes donc invité à consulté ce dossier
 
 <------PREREQUIS------->
 
