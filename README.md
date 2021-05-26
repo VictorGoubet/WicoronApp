@@ -16,3 +16,7 @@ All the requirements are in *requirements.txt*
 - Execute "python manage.py runserver"
 - Go on your favorite navigator and enter "localhost:8000"
 - Welcom on WicoronApp !
+
+
+![image](https://user-images.githubusercontent.com/63459173/119694425-7d5df180-be4d-11eb-8f84-c6af1482ece3.png)
+
