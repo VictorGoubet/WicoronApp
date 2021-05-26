@@ -11,7 +11,7 @@ The "livrable" folder regroup all the essential of this project with a report wh
 All the requirements are in *requirements.txt*
 
 # Launch
-- Launch a shell and go into "WebApp" folder
+- Launch a shell and go into "WicoronApp" folder
 - Activate your environment
 - Execute "python manage.py runserver"
 - Go on your favorite navigator and enter "localhost:8000"
