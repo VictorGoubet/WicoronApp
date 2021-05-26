@@ -1,4 +1,0 @@
-
--Encore au quelques visualisations
-
--Bonus : le mettre en ligne (HEROKU) (en cours)
